@@ -1,0 +1,8 @@
+@startuml
+actor Player
+Player -> (Singleplayer)
+Player -> (Multiplayer)
+Player -> (Rating table)
+Player -> (In-game-money shop)
+Player -> (Real-money shop)
+@enduml
