@@ -6,3 +6,4 @@ Player -> (Rating table)
 Player -> (In-game-money shop)
 Player -> (Real-money shop)
 @enduml
+ffff
