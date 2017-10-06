@@ -17,23 +17,28 @@ GamePlayer -> (Chatting)
 'More shop options
 GamePlayer --> (Buy)
 
-(Buy) ..> (Buy skins for Bman) :include
-(Buy) ..> (Buy in-game money for real money) :include
-(Buy) ..> (Buy smiles for chat) :include
+(Buy) ..> (Buy skins for Bman) :extend
+(Buy) ..> (Buy in-game money by real money) :extend
+(Buy) ..> (Buy smiles for chat) :extend
 
 GameDeveloper -up-> (View statistic of game)
 
 GameDeveloper -down-> (Change game)
 
+(Change game) ..> (Add and edit levels) :extend
+(Change game) ..> (Add and edit Bman's skills) :extend
+
+
 GameDeveloper -right-> (View gamePlayers) 
-(View gamePlayers) .right.>  (Ban of GamePlayer): exclude
-(View gamePlayers) .down.>  (Unban of GamePlayer): exclude
+(View gamePlayers) .right.>  (Ban of GamePlayer): extend
+(View gamePlayers) .down.>  (Unban of GamePlayer): extend
 
 'Adding additional shop functional to developer
+
 GameDeveloper --> (Shop item creation)
 
-(Shop item creation) ..> (Edit and add skins for Bman) :include
-(Shop item creation) ..> (Edit and add smiles for chat) :include
+(Shop item creation) ..> (Edit and add skins for Bman) :extend
+(Shop item creation) ..> (Edit and add smiles for chat) :extend
 
 
 GameDeveloper -left-> (Get money from game)
