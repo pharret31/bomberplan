@@ -4,6 +4,7 @@ actor GameDeveloper
 actor GameTicker
 
 GamePlayer -up-> (Play game) 
+
 GameTicker --> (Play game) :ticks
 (Play game) .up.> (choice of level): include
 (Play game) .right.> (choice of game's mode ): include
@@ -17,21 +18,22 @@ GamePlayer -> (Chatting)
 (Chatting) .down.> (Insert smiles ): extend
 (Chatting) .down.> (Asking for developer help): extend
 
-'More shop options
+
 GamePlayer --> (Buy)
 
 (Buy) ..> (Buy skins for Bman) :extend
 (Buy) ..> (Buy in-game money by real money) :extend
 (Buy) ..> (Buy smiles for chat) :extend
 
+
+
+
 GameDeveloper -up-> (View statistic of game)
 
 GameDeveloper -down-> (Change game)
-(Change game) -down-> (Adding new levels)
-(Change game) -right-> (Adding in-game bonuses)
-(Change game) -left-> (Changing level's difficulty)
-
-(Change game) ..> (Add and edit levels) :extend
+(Change game) -down-> (Add and edit levels) : extend
+(Change game) -right-> (Adding in-game bonuses) : extend
+(Change game) -left-> (Changing level's difficulty) : extend
 (Change game) ..> (Add and edit Bman's skills) :extend
 
 
@@ -39,10 +41,9 @@ GameDeveloper -right-> (View gamePlayers)
 (View gamePlayers) .right.>  (Ban of GamePlayer): extend
 (View gamePlayers) .down.>  (Unban of GamePlayer): extend
 
-'Adding additional shop functional to developer
+
 
 GameDeveloper --> (Shop item creation)
-
 (Shop item creation) ..> (Edit and add skins for Bman) :extend
 (Shop item creation) ..> (Edit and add smiles for chat) :extend
 
