@@ -1,8 +1,10 @@
 @startuml
 actor GamePlayer
 actor GameDeveloper
+actor GameTicker
 
 GamePlayer -up-> (Play game) 
+GameTicker --> (Play game) :ticks
 (Play game) .up.> (choice of level): include
 (Play game) .right.> (choice of game's mode ): include
 (Play game) .left.> (Signing in ): include
@@ -12,7 +14,8 @@ GamePlayer -> (Save game)
 GamePlayer -right-> (Exit game)
 
 GamePlayer -> (Chatting)
-(Chatting).down.>(Insert smiles ): extend
+(Chatting) .down.> (Insert smiles ): extend
+(Chatting) .down.> (Asking for developer help): extend
 
 'More shop options
 GamePlayer --> (Buy)
@@ -24,6 +27,9 @@ GamePlayer --> (Buy)
 GameDeveloper -up-> (View statistic of game)
 
 GameDeveloper -down-> (Change game)
+(Change game) -down-> (Adding new levels)
+(Change game) -right-> (Adding in-game bonuses)
+(Change game) -left-> (Changing level's difficulty)
 
 GameDeveloper -right-> (View gamePlayers) 
 (View gamePlayers) .right.>  (Ban of GamePlayer): exclude
@@ -34,7 +40,6 @@ GameDeveloper --> (Shop item creation)
 
 (Shop item creation) ..> (Edit and add skins for Bman) :include
 (Shop item creation) ..> (Edit and add smiles for chat) :include
-
 
 GameDeveloper -left-> (Get money from game)
 
