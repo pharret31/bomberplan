@@ -8,17 +8,18 @@ GamePlayer -up-> (Play game)
 (Play game) .left.> (Signing in ): include
 
 
-GamePlayer -down-> (Save game)
-
+GamePlayer -> (Save game)
 GamePlayer -right-> (Exit game)
 
-GamePlayer -left-> (In-game-money shop)
-
-GamePlayer -> (Real-money shop)
-
 GamePlayer -> (Chatting)
-(Chatting).down.>(Insert smiles ): exclude
+(Chatting).down.>(Insert smiles ): extend
 
+'More shop options
+GamePlayer --> (Buy)
+
+(Buy) ..> (Buy skins for Bman) :include
+(Buy) ..> (Buy in-game money for real money) :include
+(Buy) ..> (Buy smiles for chat) :include
 
 GameDeveloper -up-> (View statistic of game)
 
@@ -28,6 +29,11 @@ GameDeveloper -right-> (View gamePlayers)
 (View gamePlayers) .right.>  (Ban of GamePlayer): exclude
 (View gamePlayers) .down.>  (Unban of GamePlayer): exclude
 
+'Adding additional shop functional to developer
+GameDeveloper --> (Shop item creation)
+
+(Shop item creation) ..> (Edit and add skins for Bman) :include
+(Shop item creation) ..> (Edit and add smiles for chat) :include
 
 
 GameDeveloper -left-> (Get money from game)
