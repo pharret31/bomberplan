@@ -5,13 +5,11 @@ GamePlayer -up-> (Play game)
 
 (Play game) .up.> (choice of room): include
 (Play game) .right.> (choice of game's mode ): include
+(Play game) .left.> (escape from room ): extend
 
-GamePlayer -right-> (Exit game)
 GamePlayer -> (Signing in )
-
 (Signing in ) .up.> (to your account) :extend
 (Signing in ) .right.> (registration) :extend
- 
 (registration) .right.> (your account in another service) :extend
 
 @enduml
