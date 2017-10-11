@@ -2,14 +2,25 @@
 actor GamePlayer
 
 GamePlayer -up-> (Play game) 
+GamePlayer -down-> (Hero's editor) 
+
+(Hero's editor) .> (Choose hero):include
+(Hero's editor) .> (Create hero):extend
+(Hero's editor) .> (Choose skin):extend
+(Hero's editor) .> (Choose class):extend
+(Hero's editor) .> (Choose skills):extend
+(Hero's editor) .> (Signing in ):include
 
 (Play game) .up.> (choice of room): include
 (Play game) .right.> (choice of game's mode ): include
 (Play game) .left.> (escape from room ): extend
+(Play game) .> (Signing in ): include
+(Play game) .> (Choose hero):include
 
-GamePlayer -> (Signing in )
 (Signing in ) .up.> (to your account) :extend
 (Signing in ) .right.> (registration) :extend
 (registration) .right.> (your account in another service) :extend
+
+
 
 @enduml
