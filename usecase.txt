@@ -11,9 +11,8 @@ GamePlayer -down-> (Hero's editor)
 (Hero's editor) .down.> (Choose skills):extend
 (Hero's editor) .> (Signing in ):include
 
-(Play game) .up.> (choice of room): include
+
 (Play game) .right.> (choice of game's mode ): include
-(Play game) .left.> (escape from room ): extend
 (Play game) .> (Signing in ): include
 (Play game) .> (Choose hero):include
 
