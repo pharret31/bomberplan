@@ -4,11 +4,11 @@ actor GamePlayer
 GamePlayer -up-> (Play game) 
 GamePlayer -down-> (Hero's editor) 
 
-(Hero's editor) .> (Choose hero):include
-(Hero's editor) .> (Create hero):extend
-(Hero's editor) .> (Choose skin):extend
-(Hero's editor) .> (Choose class):extend
-(Hero's editor) .> (Choose skills):extend
+(Hero's editor) .left.> (Choose hero):include
+(Hero's editor) .down.> (Create hero):extend
+(Hero's editor) .down.> (Choose skin):extend
+(Hero's editor) .down.> (Choose class):extend
+(Hero's editor) .down.> (Choose skills):extend
 (Hero's editor) .> (Signing in ):include
 
 (Play game) .up.> (choice of room): include
@@ -18,8 +18,8 @@ GamePlayer -down-> (Hero's editor)
 (Play game) .> (Choose hero):include
 
 (Signing in ) .up.> (to your account) :extend
-(Signing in ) .right.> (registration) :extend
-(registration) .right.> (your account in another service) :extend
+(Signing in ) .down.> (registration) :extend
+(Signing in ) .right.> (your account in another service) :extend
 
 
 
