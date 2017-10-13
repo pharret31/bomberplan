@@ -22,8 +22,9 @@ GamePlayer -down-> (In-game shop)
 (Signing in ) .right.> (your account in another service) :extend
 
 
-(In-game shop) .down.> (Real-money shop):exclude
-(In-game shop) .down-> (Game-money shop):exclude
+(In-game shop) .> (Signing in ):include
+(In-game shop) .down.> (Game-money shop):extend
+(In-game shop) .down.> (Real-money shop):extend
 
 
 
