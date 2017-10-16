@@ -2,28 +2,17 @@
 actor GamePlayer
 
 GamePlayer -up-> (Play game) 
-GamePlayer -down-> (Hero's editor)
-GamePlayer -down-> (In-game shop) 
-
-(Hero's editor) .left.> (Choose hero):include
-(Hero's editor) .down.> (Create hero):extend
-(Hero's editor) .down.> (Choose skin):extend
-(Hero's editor) .down.> (Choose class):extend
-(Hero's editor) .down.> (Choose skills):extend
-(Hero's editor) .> (Signing in ):include
+GamePlayer -down-> (Signing in )
+GamePlayer  -right-> (registration) 
 
 
 (Play game) .right.> (choice of game's mode ):include
-(Play game) .> (Signing in ):include
 (Play game) .> (Choose hero):include
 
-(Signing in ) .up.> (to your account) :extend
-(Signing in ) .down.> (registration) :extend
-(Signing in ) .right.> (your account in another service) :extend
+(Signing in ) .down.> (to your account) :extend
 
+(Signing in ) .down.> (your account in another service) :extend
 
-(In-game shop) .down.> (Real-money shop):exclude
-(In-game shop) .down-> (Game-money shop):exclude
 
 
 
