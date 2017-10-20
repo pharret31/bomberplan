@@ -1,0 +1,30 @@
+@startuml
+actor GamePlayer
+
+entity database
+
+boundary "signing in screen" as signing_in_screen
+
+boundary "error screen" as error_screen 
+
+boundary "main menu screen" as main_screen 
+
+control "Check user data" as check_user_data
+
+
+
+GamePlayer-- signing_in_screen
+GamePlayer-- error_screen 
+GamePlayer-- main_screen 
+
+signing_in_screen --> check_user_data 
+check_user_data --> error_screen : "Unsuccessful"
+check_user_data --> main_screen : "Successful"
+
+
+check_user_data --> database: "Check"
+
+error_screen --> signing_in_screen 
+
+
+@enduml

@@ -6,8 +6,6 @@ GamePlayer -down-> (Signing in )
 GamePlayer  -right-> (registration) 
 
 
-(Play game) .right.> (choice of game's mode ):include
-(Play game) .> (Choose hero):include
 
 (Signing in ) .down.> (to your account) :extend
 
