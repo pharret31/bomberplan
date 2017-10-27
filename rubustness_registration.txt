@@ -1,0 +1,25 @@
+@startuml
+actor GamePlayer
+
+entity database
+
+boundary "signing in screen" as signing_in_screen
+
+boundary "Registration screen" as registration_screen 
+
+control "Fill in userdata" as fill_in_userdata
+control "Registration letter send" as registration_letter_sending
+
+
+GamePlayer-- registration_screen 
+
+registration_screen --> fill_in_userdata
+fill_in_userdata --> registration_screen : "Unsuccessful"
+fill_in_userdata --> registration_letter_sending : "Successful"
+
+fill_in_userdata --> database: "Check"
+
+registration_letter_sending --> signing_in_screen 
+
+
+@enduml
