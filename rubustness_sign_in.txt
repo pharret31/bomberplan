@@ -11,8 +11,6 @@ boundary "main menu screen" as main_screen
 
 control "Check user data" as check_user_data
 
-
-
 GamePlayer-- signing_in_screen
 GamePlayer-- main_screen 
 
@@ -22,7 +20,6 @@ check_user_data --> main_screen : "Successful"
 
 
 check_user_data --> database: "Check"
-
 
 
 
