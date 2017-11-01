@@ -5,7 +5,7 @@ entity database
 
 boundary "signing in screen" as signing_in_screen
 
-boundary "error screen" as error_screen 
+control "display error screen" as error_screen  #red
 
 boundary "main menu screen" as main_screen 
 
@@ -14,7 +14,6 @@ control "Check user data" as check_user_data
 
 
 GamePlayer-- signing_in_screen
-GamePlayer-- error_screen 
 GamePlayer-- main_screen 
 
 signing_in_screen --> check_user_data 
@@ -24,7 +23,32 @@ check_user_data --> main_screen : "Successful"
 
 check_user_data --> database: "Check"
 
-error_screen --> signing_in_screen 
 
+
+
+note as scenario 
+Название прецедента: sign in
+Действующее лицо: game player
+Цель: авторизация
+Предусловия: game player запустил игру
+
+Главаная последоватльность:
+1) game player вводит свой логин и пароль,
+нажимает кнопку sign in
+2) система выполняет проверку введенных 
+данных;
+3) логин и пароль совпадают с логином и 
+паролем из бд, поэтому game player видит main 
+menu screen.
+
+Альтернативная последовательность:
+1) game player вводит свой логин и пароль,
+нажимает кнопку sign in;
+2) система выполняет проверку введенных данных;
+3) логин и пароль не совпадают с логином и 
+паролем из бд, game player видит error screen.
+
+
+end note
 
 @enduml

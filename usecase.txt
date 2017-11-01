@@ -6,9 +6,6 @@ GamePlayer -down-> (Signing in )
 GamePlayer  -right-> (registration) 
 
 
-
-(Signing in ) .down.> (to your account) :extend
-
 (Signing in ) .down.> (your account in another service) :extend
 
 
