@@ -9,17 +9,46 @@ boundary "Registration screen" as registration_screen
 
 control "Fill in userdata" as fill_in_userdata
 control "Registration letter send" as registration_letter_sending
-
+control "error display " as error_display #red
 
 GamePlayer-- registration_screen 
 
 registration_screen --> fill_in_userdata
-fill_in_userdata --> registration_screen : "Unsuccessful"
+fill_in_userdata --> error_display: "Unsuccessful"
+
+
 fill_in_userdata --> registration_letter_sending : "Successful"
 
 fill_in_userdata --> database: "Check"
 
 registration_letter_sending --> signing_in_screen 
 
+note as scenario 
+Название прецедента: registration
+Действующее лицо: game player
+Цель: регистрация
+Предусловия: 
+game player запустил игру
+нажал кнопку registration
+
+Главаная последовательность:
+1) game player вводит свой логин, пароль,
+e-mail нажимает кнопку registration
+2) система выполняет проверку введенных 
+данных, таких данные в БД нет, следовательно
+заносит в БД;
+3) отправляется письмо на e-mail;
+4) game player видит signing in screen
+
+Альтернативная последовательность:
+1) game player вводит свой логин, пароль,
+e-mail нажимает кнопку registration
+2) система выполняет проверку введенных 
+данных, такие данные в БД уже есть, следовательно
+не заносит в БД данные;
+3)  game player видит error screen.
+
+
+end note
 
 @enduml
