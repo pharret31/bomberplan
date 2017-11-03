@@ -1,0 +1,60 @@
+@startuml
+
+actor GamePlayer
+
+
+entity database
+
+
+entity database_of_service
+boundary "signing in screen" as signing_in_screen
+
+
+boundary "signing in error screen" as error_screen  #red
+
+
+boundary "main menu screen" as main_screen
+control "Check user data" as check_user_data
+
+
+GamePlayer-- signing_in_screen
+
+GamePlayer-- main_screen 
+
+
+signing_in_screen --> check_user_data 
+
+check_user_data --> error_screen : "Unsuccessful"
+
+error_screen --> signing_in_screen
+check_user_data --> main_screen : "Successful"
+
+
+
+check_user_data --> database: "Check"
+
+database_of_service --> check_user_data : "Send authorization data"
+note as scenario 
+
+Название прецедента: alter sign in
+Действующее лицо: game player
+Цель: авторизация с помощью сервиса ВК, Google или FB
+Предусловия: game player запустил игру
+
+Главаная последоватльность:
+1) Game player нажимает на иконку ВК, Google или FB (далее - сервис);
+2) Система выполняет проверку доступа к данным выбранного сервиса;
+3) Доступ к данным сервиса предоставлен пользователем;
+4) Получение данных для авторизации от сервиса;
+5) Данные для авторизации от сервиса совпадают с данными из бд, поэтому game player видит main 
+menu screen.
+
+Альтернативная последовательность:
+1) Game player нажимает на иконку сервиса;
+2) Система выполняет проверку доступа к данным выбранного сервиса;
+3) Доступ к данным сервиса НЕ предоставлен пользователем;
+4) Данные для авторизации от сервиса отсутствуют, вывод экрана ошибки;
+5) Возврат к экрану авторизации.
+end note
+
+@enduml
