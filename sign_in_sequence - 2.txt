@@ -1,0 +1,40 @@
+
+@startuml
+
+actor GamePlayer
+
+boundary "signing in screen" 
+entity database
+boundary "main menu screen" 
+boundary  "error screen" 
+
+GamePlayer -> "signing in screen" : enter login/password
+activate "signing in screen"
+"signing in screen" -> "database" : checking login and password
+activate "database" 
+
+alt correct login and password
+ 
+	"database"  --> "signing in screen" : correct login and password
+	destroy database
+	"signing in screen" -> "main menu screen" : Show
+	activate "main menu screen" 
+	destroy "signing in screen"
+
+
+else uncorrect login and password
+	
+	"database"  --> "signing in screen" : uncorrect login and password
+	activate "signing in screen"
+	activate "database"
+	destroy database
+	"signing in screen" -> "error screen" : Show error
+	
+	activate "error screen" 
+	destroy "signing in screen"
+
+
+end
+
+
+@enduml

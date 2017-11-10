@@ -9,9 +9,10 @@ boundary "main menu screen" as main_screen
 
 GamePlayer -> signing_in_screen- : enter login/password
 
+activate signing_in_screen
 GamePlayer -> signing_in_screen- : press button 
 
-signing_in_screen-> database: chech login and password
+signing_in_screen-> database: check login and password
 
 database --> signing_in_screen: answer correct
 
