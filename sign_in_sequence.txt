@@ -1,0 +1,20 @@
+@startuml
+actor GamePlayer
+
+boundary "signing in screen" as signing_in_screen
+entity database
+boundary "main menu screen" as main_screen 
+
+
+
+GamePlayer -> signing_in_screen- : enter login/password
+
+GamePlayer -> signing_in_screen- : press button 
+
+signing_in_screen-> database: chech login and password
+
+database --> signing_in_screen: answer correct
+
+signing_in_screen-> main_screen: Show
+
+@enduml
