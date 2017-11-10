@@ -11,15 +11,19 @@ boundary "main menu screen" as main_screen
 
 control "Check user data" as check_user_data
 
+control "Send user data" as send_user_data
+
 GamePlayer-- signing_in_screen
 GamePlayer-- main_screen 
 
-signing_in_screen --> check_user_data 
+signing_in_screen --> check_user_data : "Local check"
 check_user_data --> error_screen : "Unsuccessful"
 check_user_data --> main_screen : "Successful"
-
-
 check_user_data --> database: "Check"
+
+signing_in_screen --> send_user_data : "Remote check in another service"
+send_user_data --> error_screen : "Unsuccessful"
+send_user_data --> main_screen : "Successful"
 
 
 
@@ -32,16 +36,16 @@ note as scenario
 Главаная последоватльность:
 1) game player вводит свой логин и пароль,
 нажимает кнопку sign in
-2) система выполняет проверку введенных 
+2) система выполняет локальную проверку введенных 
 данных;
 3) логин и пароль совпадают с логином и 
 паролем из бд, поэтому game player видит main 
 menu screen.
 
-Альтернативная последовательность:
+Альтернативная последовательность 1:
 1) game player вводит свой логин и пароль,
 нажимает кнопку sign in;
-2) система выполняет проверку введенных данных;
+2) система выполняет локальную проверку введенных данных;
 3) логин и пароль не совпадают с логином и 
 паролем из бд, game player видит error screen.
 
