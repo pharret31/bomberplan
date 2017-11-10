@@ -1,0 +1,29 @@
+@startuml
+
+Player -> "Register window" : Data input
+activate "Register window"
+"Register window" -> "DB adapter" : Data checking
+activate "DB adapter"
+
+alt user is not exists case
+
+	"DB adapter" --> "Register window" : User is not exists
+	"Register window" -> "DB adapter" : Create user
+	"DB adapter" --> "Register window" : User has been created
+	"Register window" -> "Email adapter" : Send email
+	activate "Email adapter"
+	"Email adapter" --> "Register window" : Email has been sended
+	destroy "Email adapter"
+	"Register window" -> "Sign in window" : Show sign in window
+
+else user is exists
+
+	"DB adapter" --> "Register window" : User is exists
+	"Register window" -> "Register window" : Show error
+
+end
+
+destroy "DB adapter"
+destroy "Register window"
+
+@enduml
