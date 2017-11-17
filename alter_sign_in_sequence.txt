@@ -1,0 +1,44 @@
+@startuml
+
+actor GamePlayer
+
+boundary "signing in screen" 
+entity database
+entity database_of_service
+boundary "main menu screen" 
+boundary  "error screen" 
+
+GamePlayer -> "signing in screen" : press service's button
+activate "signing in screen"
+"signing in screen" -> "database_of_service" : check access
+activate "database_of_service" 
+
+alt access allowed
+ 
+       "database_of_service" --> "signing in screen" : allowed
+       "signing in screen" -> "database_of_service" : get user data
+       "database_of_service" --> "signing in screen" : user data	
+       destroy database_of_service
+       "signing in screen" -> "database" : user data
+       activate "database"
+       "database" --> "signing in screen" : correct
+       destroy database
+       "signing in screen" -> "main menu screen" : Show
+       activate "main menu screen" 
+       destroy "signing in screen"
+
+else access unallowed
+	
+	"database_of_service"  --> "signing in screen" : NOT allowed
+	activate "signing in screen"
+	activate "database_of_service"
+	destroy database_of_service
+	"signing in screen" -> "error screen" : Show error
+	activate "error screen" 
+	destroy "signing in screen"
+
+
+end
+
+
+@enduml
